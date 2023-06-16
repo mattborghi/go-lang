@@ -4,8 +4,9 @@ import "fmt"
 
 func main() {
 	cards := newDeck()
+	cards.saveToFile("./02_cards/deck.output")
+
 	hand, remainingCards := deal(cards, 5)
-	fmt.Println(hand.toString())
 
 	fmt.Println("Hand: ")
 	hand.print()
