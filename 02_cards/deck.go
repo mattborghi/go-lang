@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type deck []string
 
@@ -19,6 +22,7 @@ func newDeck() deck {
 	return cards
 }
 
+// This type of function is a receiver and allows us to call deck.print()
 func (d deck) print() {
 	for i, card := range d {
 		fmt.Println(i+1, card)
@@ -27,4 +31,8 @@ func (d deck) print() {
 
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
 }
