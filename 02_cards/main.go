@@ -1,15 +1,16 @@
 package main
 
-import "fmt"
-
 func main() {
+	filename := "./02_cards/deck.output"
 	cards := newDeck()
-	cards.saveToFile("./02_cards/deck.output")
+	cards.saveToFile(filename)
+	readCards := newDeckFromFile(filename)
 
-	hand, remainingCards := deal(cards, 5)
+	readCards.print()
+	// hand, remainingCards := deal(cards, 5)
 
-	fmt.Println("Hand: ")
-	hand.print()
-	fmt.Println("Remaining Cards: ")
-	remainingCards.print()
+	// fmt.Println("Hand: ")
+	// hand.print()
+	// fmt.Println("Remaining Cards: ")
+	// remainingCards.print()
 }
