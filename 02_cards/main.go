@@ -4,8 +4,9 @@ func main() {
 	filename := "./02_cards/deck.output"
 	cards := newDeck()
 	cards.saveToFile(filename)
-	readCards := newDeckFromFile(filename)
 
+	readCards := newDeckFromFile(filename)
+	readCards.shuffle()
 	readCards.print()
 	// hand, remainingCards := deal(cards, 5)
 
