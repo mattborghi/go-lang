@@ -9,11 +9,11 @@ make run
 and
 
 ```
-# go run 04_interfaces/main.go
+# go run 05_interfaces/main.go
 ```
 
 or simply
 
 ```
-# docker exec -it learning_go go run 04_interfaces/main.go
+# docker exec -it learning_go go run 05_interfaces/main.go
 ```
