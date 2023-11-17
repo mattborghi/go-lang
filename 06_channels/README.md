@@ -53,3 +53,7 @@ To avoid this we will use channels, to communicate between go routines. They nee
 There are several ways to communicate with a channel explained below.
 
 ![communicate_channels](./images/communicate_with_channel.png)
+
+A third approach will be done to continuously request the status of the urls.
+
+![third_approach](./images/third_approach.png)

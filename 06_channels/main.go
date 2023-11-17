@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func main() {
@@ -26,18 +27,36 @@ func main() {
 	// Receive a value from the channel
 	// Shorthand for not storing the channel message in a intermediate variable
 	// This is a blocking call. After the channel receives a value the main routine exits.
-	fmt.Println(<-c)
+	// fmt.Println(<-c)
+	// Instead of concatenating one instruction for every expected channel to be received we can write a for loop
+	// for i := 0; i < len(links); i++ {
+	// Use an infinite loop instead
+	for l := range c {
+		// Create a function literal (anonymous functions or lambda)
+		go func(link string) {
+			time.Sleep(2 * time.Second)
+			// rangign over c avoids writing <-c
+			// fmt.Println(<-c)
+			checkLink(link, c)
+		}(l)
+	}
 }
 
 func checkLink(link string, c chan string) {
+	// We don't want a pause during the inital fetch
+	// Wait two seconds to run this
+	// time.Sleep(time.Second * 2)
 	_, err := http.Get(link)
 	if err != nil {
 		fmt.Println(link, "might be down!!")
 		// Send a value to the channel
-		c <- "Might be down"
+		// c <- "Might be down"
+		// Send the link because we want to kick off another checkLink routine for that link
+		c <- link
 		return
 	}
 
 	fmt.Println(link, "is up!!")
-	c <- "It's up"
+	// c <- "It's up"
+	c <- link
 }
